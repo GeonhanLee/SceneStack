@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355929e83bd5274d91856f03b1cf6e6, type: 3}
+  m_Name: new SceneStack_AB
+  m_EditorClassIdentifier: 
+  _baseScene: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+  _overlayScenes:
+  - {fileID: 102900000, guid: 5956ec7ad76806443871958ef722ad8f, type: 3}
+  - {fileID: 102900000, guid: dd3de1b4eccbced4298e695583ed190c, type: 3}
+  _sceneStack:
+    baseScene:
+      name: BaseScene
+      path: Assets/Scenes/BaseScene.unity
+    overlayScenes:
+    - name: OverlaySceneA
+      path: Assets/Scenes/OverlaySceneA.unity
+    - name: OverlaySceneB
+      path: Assets/Scenes/OverlaySceneB.unity
