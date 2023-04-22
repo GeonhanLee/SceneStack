@@ -1,12 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 [CreateAssetMenu(fileName = "new SceneStack", menuName = "SceneStack/Create SceneStack", order = 5)]
-public class SceneStackSO : ScriptableObject
+public partial class SceneStackSO : ScriptableObject
 {
-    [FormerlySerializedAs("_sceneStack"), SerializeField] 
-    private SceneStack _sceneStack = default;
-    public SceneStack sceneStack => _sceneStack;
+    [SerializeField] private SceneReference _baseScene = default;
+    [SerializeField] private List<SceneReference> _overlayScenes = default;
+
+    public SceneStack sceneStack {
+        get {
+            var tempSceneStack = new SceneStack();
+            tempSceneStack.baseScene = _baseScene.data;
+            tempSceneStack.overlayScenes = new List<SceneData>();
+
+            foreach (var overlayScene in _overlayScenes)
+            {
+                tempSceneStack.overlayScenes.Add(overlayScene.data);
+            }
+
+            return tempSceneStack;
+        }
+    }
 }

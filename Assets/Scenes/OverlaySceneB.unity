@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 956d7d520a0f7db4db4bf2fd4b5e0c66, type: 2}
+  _sceneStackSO: {fileID: 11400000, guid: f486340bd65ed5b4e88406e558c2731a, type: 2}
   _textMeshProUGUI: {fileID: 0}
 --- !u!1 &1287747453
 GameObject:

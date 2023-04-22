@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c355929e83bd5274d91856f03b1cf6e6, type: 3}
   m_Name: new SceneStack_ABC
   m_EditorClassIdentifier: 
-  _sceneStack:
-    baseScene:
-      _guid: 8c9cfa26abfee488c85f1582747f6a02
+  _baseScene:
+    _guid: 8c9cfa26abfee488c85f1582747f6a02
+    data:
       name: BaseScene
       path: Assets/Scenes/New Folder/BaseScene.unity
-    overlayScenes:
-    - _guid: 5956ec7ad76806443871958ef722ad8f
+  _overlayScenes:
+  - _guid: 5956ec7ad76806443871958ef722ad8f
+    data:
       name: OverlaySceneA
-      path: Assets/Scenes/New Folder/OverlaySceneA.unity
-    - _guid: dd3de1b4eccbced4298e695583ed190c
+      path: Assets/Scenes/OverlaySceneA.unity
+  - _guid: dd3de1b4eccbced4298e695583ed190c
+    data:
       name: OverlaySceneB
       path: Assets/Scenes/OverlaySceneB.unity
-    - _guid: 8a8d774a926d6634abadf6fb3978c914
+  - _guid: 8a8d774a926d6634abadf6fb3978c914
+    data:
       name: OverlaySceneC
       path: Assets/Scenes/OverlaySceneC.unity

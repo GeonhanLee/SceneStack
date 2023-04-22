@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/OverlaySceneB.unity
     guid: dd3de1b4eccbced4298e695583ed190c
   - enabled: 1
-    path: Assets/Scenes/New Folder/OverlaySceneA.unity
+    path: Assets/Scenes/OverlaySceneA.unity
     guid: 5956ec7ad76806443871958ef722ad8f
   - enabled: 1
     path: Assets/Scenes/OverlaySceneC.unity

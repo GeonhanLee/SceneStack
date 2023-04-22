@@ -22,6 +22,7 @@ public class SceneStackSOManager : ScriptableSingleton<SceneStackSOManager>
         {
             _sceneStackSOPaths.Add(AssetDatabase.GUIDToAssetPath(guid));
         }
+
         AssetDatabase.ForceReserializeAssets(_sceneStackSOPaths);
     }
 }
