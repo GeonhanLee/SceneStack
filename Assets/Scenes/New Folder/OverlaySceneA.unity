@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 241712292}
   - component: {fileID: 241712291}
   - component: {fileID: 241712295}
+  - component: {fileID: 241712296}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -238,6 +239,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eacaeafc32b6c14d8552edaa1f2de81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &241712296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241712290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneStackSO: {fileID: 11400000, guid: f486340bd65ed5b4e88406e558c2731a, type: 2}
+  _textMeshProUGUI: {fileID: 0}
 --- !u!1 &440982634
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +265,6 @@ GameObject:
   - component: {fileID: 440982638}
   - component: {fileID: 440982637}
   - component: {fileID: 440982636}
-  - component: {fileID: 440982639}
   m_Layer: 5
   m_Name: ButtonA
   m_TagString: Untagged
@@ -323,7 +337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 440982639}
+      - m_Target: {fileID: 241712296}
         m_TargetAssemblyTypeName: SceneStackLoader, Assembly-CSharp
         m_MethodName: LoadSceneStack
         m_Mode: 1
@@ -373,20 +387,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440982634}
   m_CullTransparentMesh: 1
---- !u!114 &440982639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440982634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 00877907489b7994d8b4987abf6166a7, type: 2}
-  _textMeshProUGUI: {fileID: 0}
 --- !u!1 &1287747453
 GameObject:
   m_ObjectHideFlags: 0

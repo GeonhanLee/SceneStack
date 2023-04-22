@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c355929e83bd5274d91856f03b1cf6e6, type: 3}
-  m_Name: new SceneStack_BAC
+  m_Name: new SceneStack_ABC
   m_EditorClassIdentifier: 
-  _baseScene: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-  _overlayScenes:
-  - {fileID: 102900000, guid: dd3de1b4eccbced4298e695583ed190c, type: 3}
-  - {fileID: 102900000, guid: 5956ec7ad76806443871958ef722ad8f, type: 3}
-  - {fileID: 102900000, guid: 8a8d774a926d6634abadf6fb3978c914, type: 3}
   _sceneStack:
     baseScene:
+      _guid: 8c9cfa26abfee488c85f1582747f6a02
       name: BaseScene
-      path: Assets/Scenes/BaseScene.unity
+      path: Assets/Scenes/New Folder/BaseScene.unity
     overlayScenes:
-    - name: OverlaySceneB
+    - _guid: 5956ec7ad76806443871958ef722ad8f
+      name: OverlaySceneA
+      path: Assets/Scenes/New Folder/OverlaySceneA.unity
+    - _guid: dd3de1b4eccbced4298e695583ed190c
+      name: OverlaySceneB
       path: Assets/Scenes/OverlaySceneB.unity
-    - name: OverlaySceneA
-      path: Assets/Scenes/OverlaySceneA.unity
-    - name: OverlaySceneC
+    - _guid: 8a8d774a926d6634abadf6fb3978c914
+      name: OverlaySceneC
       path: Assets/Scenes/OverlaySceneC.unity

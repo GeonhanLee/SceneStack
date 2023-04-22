@@ -8,11 +8,13 @@ public class SceneStackSOEditor : Editor
     public override void OnInspectorGUI()
     {
         SceneStackSO sceneStackSO = (SceneStackSO)target;
+        /*
         SerializedProperty baseScene = serializedObject.FindProperty("_baseScene");
         if(baseScene.objectReferenceValue == null)
         {
             EditorGUILayout.HelpBox("Please make sure to assign the Base Scene", MessageType.Warning);
         }
+        */
 
         GUILayout.Space(10);
         if (GUILayout.Button("LoadScene (Editor Mode)"))

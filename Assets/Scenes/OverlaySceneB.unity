@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 166885369}
   - component: {fileID: 166885373}
   - component: {fileID: 166885372}
-  - component: {fileID: 166885371}
   - component: {fileID: 166885370}
+  - component: {fileID: 166885371}
   m_Layer: 5
   m_Name: ButtonC
   m_TagString: Untagged
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 9063b882d947ef04c8ba697e572213a3, type: 2}
+  _sceneStackSO: {fileID: 11400000, guid: 956d7d520a0f7db4db4bf2fd4b5e0c66, type: 2}
   _textMeshProUGUI: {fileID: 0}
 --- !u!114 &166885371
 MonoBehaviour:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 166885370}
+      - m_Target: {fileID: 1057674686}
         m_TargetAssemblyTypeName: SceneStackLoader, Assembly-CSharp
         m_MethodName: LoadSceneStack
         m_Mode: 1
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 00877907489b7994d8b4987abf6166a7, type: 2}
+  _sceneStackSO: {fileID: 11400000, guid: 956d7d520a0f7db4db4bf2fd4b5e0c66, type: 2}
   _textMeshProUGUI: {fileID: 0}
 --- !u!1 &1287747453
 GameObject:

@@ -12,7 +12,7 @@ public class SceneStackLoader : MonoBehaviour
     public void LoadSceneStack()
     {
         if(_textMeshProUGUI) _textMeshProUGUI.text = _sceneStackSO.sceneStack.baseScene.name;
-        LoadSceneStack(_sceneStackSO.sceneStack);
+        if(_sceneStackSO) LoadSceneStack(_sceneStackSO.sceneStack);
     }
 
     public void LoadSceneStack(SceneStack stack)

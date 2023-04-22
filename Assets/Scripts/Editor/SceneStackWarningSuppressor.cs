@@ -15,6 +15,7 @@ public static class SceneStackWarningSuppressor
         if (SessionState.GetBool("StartUp", false) == false)
         {
             SessionState.SetBool("StartUp", true);
+            Debug.Log("projectStartup");
         }
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
 

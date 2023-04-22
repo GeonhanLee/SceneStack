@@ -670,6 +670,7 @@ GameObject:
   - component: {fileID: 628920849}
   - component: {fileID: 628920848}
   - component: {fileID: 628920847}
+  - component: {fileID: 628920852}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -773,6 +774,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &628920852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628920846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneStackSO: {fileID: 11400000, guid: f486340bd65ed5b4e88406e558c2731a, type: 2}
+  _textMeshProUGUI: {fileID: 303158364}
 --- !u!1 &844305342
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +800,6 @@ GameObject:
   - component: {fileID: 844305347}
   - component: {fileID: 844305346}
   - component: {fileID: 844305345}
-  - component: {fileID: 844305344}
   m_Layer: 5
   m_Name: ButtonB
   m_TagString: Untagged
@@ -814,20 +828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &844305344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844305342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 00877907489b7994d8b4987abf6166a7, type: 2}
-  _textMeshProUGUI: {fileID: 303158364}
 --- !u!114 &844305345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 844305344}
+      - m_Target: {fileID: 628920852}
         m_TargetAssemblyTypeName: SceneStackLoader, Assembly-CSharp
         m_MethodName: LoadSceneStack
         m_Mode: 1
