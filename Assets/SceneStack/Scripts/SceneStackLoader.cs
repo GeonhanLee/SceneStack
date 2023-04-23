@@ -8,15 +8,19 @@ using UnityEngine.SceneManagement;
 public class SceneStackLoader : MonoBehaviour
 {
     [SerializeField] private SceneStackSO _sceneStackSO = default;
-    [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     public void LoadSceneStack()
     {
-        if(_textMeshProUGUI) _textMeshProUGUI.text = _sceneStackSO.sceneStack.baseScene.name;
         if(_sceneStackSO) LoadSceneStack(_sceneStackSO.sceneStack);
     }
 
     public void LoadSceneStack(SceneStack stack)
     {
+        if(!SceneStack.IsValid(stack))
+        {
+            Debug.LogError("SceneStack is not valid!");
+            return;
+        }
+
         SceneManager.LoadScene(stack.baseScene.path);
         SceneManager.SetActiveScene(SceneManager.GetSceneByPath(stack.baseScene.path));
 
@@ -31,7 +35,7 @@ public class SceneStackLoader : MonoBehaviour
                 {
                     if (path != scene.path) return;
 
-                    SceneStackUtility.SetCameraStack();
+                    SceneStackUtility.ConfigureCameraStack();
                     SceneManager.sceneLoaded -= SetCameraStack;
                 };
                 SceneManager.sceneLoaded += SetCameraStack;

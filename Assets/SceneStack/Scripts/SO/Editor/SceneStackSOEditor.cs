@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -8,13 +10,15 @@ public class SceneStackSOEditor : Editor
     public override void OnInspectorGUI()
     {
         SceneStackSO sceneStackSO = (SceneStackSO)target;
-        /*
+
         SerializedProperty baseScene = serializedObject.FindProperty("_baseScene");
-        if(baseScene.objectReferenceValue == null)
+        var guid = baseScene.FindPropertyRelative("_guid");
+
+
+        if (string.IsNullOrWhiteSpace(guid.stringValue) || guid.stringValue == Guid.Empty.ToString("N"))
         {
             EditorGUILayout.HelpBox("Please make sure to assign the Base Scene", MessageType.Warning);
         }
-        */
 
         GUILayout.Space(10);
         if (GUILayout.Button("LoadScene (Editor Mode)"))
@@ -25,13 +29,13 @@ public class SceneStackSOEditor : Editor
 
         serializedObject.Update();
         EditorGUI.BeginChangeCheck();
+
         DrawPropertiesExcluding(serializedObject, "m_Script");
 
         if (EditorGUI.EndChangeCheck())
         {
             serializedObject.ApplyModifiedProperties();
         }
-        //base.OnInspectorGUI();
     }
 
     [MenuItem("Assets/Open Scene Stack", priority = 19)]

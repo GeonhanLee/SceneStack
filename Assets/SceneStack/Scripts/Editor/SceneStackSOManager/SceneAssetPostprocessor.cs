@@ -17,7 +17,7 @@ internal class SceneAssetPostprocessor : AssetPostprocessor
 
         if (hasSceneChange)
         {
-            EditorApplication.delayCall += ()=> SceneStackSOManager.instance.ReserializeSceneStackSOs();
+            EditorApplication.delayCall += ()=> SceneStackSOManager.ReserializeAllSceneStackSO();
         }
     }
 }

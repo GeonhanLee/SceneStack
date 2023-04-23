@@ -15,6 +15,11 @@ public static class SceneStackEditorUtility
             Debug.LogError("Do not use OpenSceneStack in play mode!");
             return;
         }
+        if(!SceneStack.IsValid(stack))
+        {
+            Debug.LogError("SceneStack is not valid!");
+            return;
+        }
 
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 

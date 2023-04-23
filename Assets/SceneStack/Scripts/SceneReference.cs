@@ -25,6 +25,7 @@ partial class SceneStackSO
             SetSceneData();
 #endif
         }
+        public bool IsValid => data.IsValid;
 
 #if UNITY_EDITOR
         private void SetSceneData()
@@ -46,24 +47,25 @@ partial class SceneStackSO
 
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SceneReference))]
-    public class SceneReferencePropertyDrawer : PropertyDrawer
+    private class SceneReferencePropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var guidRelative = property.FindPropertyRelative("_guid");
 
+            var path = AssetDatabase.GUIDToAssetPath(guidRelative.stringValue);
+            var sceneAsset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+
             var content = EditorGUI.BeginProperty(position, label, guidRelative);
 
             EditorGUI.BeginChangeCheck();
 
-            var guidSource = guidRelative.stringValue;
-            var path = AssetDatabase.GUIDToAssetPath(guidSource);
-            var sceneAsset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
-
             var target = EditorGUI.ObjectField(position, content, sceneAsset, typeof(SceneAsset), false);
 
             if (EditorGUI.EndChangeCheck())
+            {
                 guidRelative.stringValue = AssetDatabase.GUIDFromAssetPath(AssetDatabase.GetAssetPath(target)).ToString();
+            }
 
             EditorGUI.EndProperty();
         }
