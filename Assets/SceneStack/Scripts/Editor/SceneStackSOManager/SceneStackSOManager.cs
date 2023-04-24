@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     public static class SceneStackSOManager
     {

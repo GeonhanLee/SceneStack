@@ -1,7 +1,7 @@
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     public class BuildPreprocessor : IPreprocessBuildWithReport
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     [CreateAssetMenu(fileName = "new SceneStack", menuName = "SceneStack/Create SceneStack", order = 5)]
     public partial class SceneStackSO : ScriptableObject

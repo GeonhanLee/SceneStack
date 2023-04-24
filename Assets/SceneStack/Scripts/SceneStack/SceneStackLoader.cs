@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     public class SceneStackLoader : MonoBehaviour
     {

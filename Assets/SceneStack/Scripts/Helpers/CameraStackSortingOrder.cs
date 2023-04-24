@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     [RequireComponent(typeof(Camera))]
     public class CameraStackSortingOrder : MonoBehaviour

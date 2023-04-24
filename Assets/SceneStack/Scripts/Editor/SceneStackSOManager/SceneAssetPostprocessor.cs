@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEditor;
 using System.IO;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     internal class SceneAssetPostprocessor : AssetPostprocessor
     {

@@ -2,7 +2,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     public static class SceneStackEditorUtility
     {

@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     [InitializeOnLoad]
     static class PlayModeListener

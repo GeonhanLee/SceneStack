@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     [System.Serializable]
     public struct SceneData

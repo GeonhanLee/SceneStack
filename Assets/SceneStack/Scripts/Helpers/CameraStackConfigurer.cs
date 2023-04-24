@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     public static class CameraStackConfigurer
     {

@@ -5,7 +5,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     // removes annoying warning
     [InitializeOnLoad]
@@ -13,13 +13,7 @@ namespace SceneStack
     {
         static SceneStackWarningSuppressor()
         {
-            if (SessionState.GetBool("StartUp", false) == false)
-            {
-                SessionState.SetBool("StartUp", true);
-                Debug.Log("projectStartup");
-            }
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-
             EditorSceneManager.sceneSaving += OnSceneSaving;
             EditorSceneManager.sceneSaved += OnSceneSaved;
         }

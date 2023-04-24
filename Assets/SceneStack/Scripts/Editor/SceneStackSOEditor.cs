@@ -2,10 +2,10 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace SceneStack
+namespace Malcha.SceneStack.Editor
 {
     [CustomEditor(typeof(SceneStackSO))]
-    public class SceneStackSOEditor : Editor
+    public class SceneStackSOEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

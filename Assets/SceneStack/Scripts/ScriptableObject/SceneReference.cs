@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 #endif
 
-namespace SceneStack
+namespace Malcha.SceneStack
 {
     partial class SceneStackSO
     {
