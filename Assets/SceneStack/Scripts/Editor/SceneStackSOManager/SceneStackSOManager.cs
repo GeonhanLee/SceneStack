@@ -1,24 +1,26 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public static class SceneStackSOManager
+namespace SceneStack
 {
-    public static void ReserializeAllSceneStackSO()
+    public static class SceneStackSOManager
     {
-        Debug.Log("ReserializeAllSceneStackSO");
-        List<string> _sceneStackSOPaths = new();
-        var allSceneStackGuids = AssetDatabase.FindAssets("t:SceneStackSO");
-
-        foreach (var guid in allSceneStackGuids)
+        public static void ReserializeAllSceneStackSO()
         {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
+            Debug.Log("ReserializeAllSceneStackSO");
+            List<string> _sceneStackSOPaths = new();
+            var allSceneStackGuids = AssetDatabase.FindAssets("t:SceneStackSO");
 
-            _sceneStackSOPaths.Add(path);
-            AssetDatabase.SaveAssetIfDirty(AssetDatabase.GUIDFromAssetPath(path));
+            foreach (var guid in allSceneStackGuids)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+
+                _sceneStackSOPaths.Add(path);
+                AssetDatabase.SaveAssetIfDirty(AssetDatabase.GUIDFromAssetPath(path));
+            }
+
+            AssetDatabase.ForceReserializeAssets(_sceneStackSOPaths);
         }
-        
-        AssetDatabase.ForceReserializeAssets(_sceneStackSOPaths);
     }
 }

@@ -18,14 +18,14 @@ MonoBehaviour:
       name: BaseScene
       path: Assets/Scenes/New Folder/BaseScene.unity
   _overlayScenes:
-  - _guid: dd3de1b4eccbced4298e695583ed190c
-    data:
-      name: OverlaySceneB
-      path: Assets/Scenes/OverlaySceneB.unity
   - _guid: 5956ec7ad76806443871958ef722ad8f
     data:
       name: OverlaySceneA
       path: Assets/Scenes/OverlaySceneA.unity
+  - _guid: dd3de1b4eccbced4298e695583ed190c
+    data:
+      name: OverlaySceneB
+      path: Assets/Scenes/OverlaySceneB.unity
   - _guid: 8a8d774a926d6634abadf6fb3978c914
     data:
       name: OverlaySceneC

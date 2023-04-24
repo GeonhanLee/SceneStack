@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-[InitializeOnLoad]
-static class PlayModeListener
+namespace SceneStack
 {
-    static PlayModeListener()
+    [InitializeOnLoad]
+    static class PlayModeListener
     {
-        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-    }
-
-    private static void OnPlayModeStateChanged(PlayModeStateChange state)
-    {
-        if (state == PlayModeStateChange.ExitingEditMode)
+        static PlayModeListener()
         {
-            SceneStackSOManager.ReserializeAllSceneStackSO();
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingEditMode)
+            {
+                SceneStackSOManager.ReserializeAllSceneStackSO();
+            }
         }
     }
 }
