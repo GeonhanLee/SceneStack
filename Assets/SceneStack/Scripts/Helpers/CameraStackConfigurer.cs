@@ -8,7 +8,6 @@ namespace Malcha.SceneStack
 {
     public static class CameraStackConfigurer
     {
-        // need work
         public static void ConfigureBySceneOrder()
         {
             var cameraData = Camera.main.GetUniversalAdditionalCameraData();
