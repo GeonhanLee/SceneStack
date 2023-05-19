@@ -5,5 +5,21 @@ Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Efla
 ## Features
 - Multi-scene management
 - URP Camera Stacking support
-  - Finds and adds all overlay cameras across scenes to the base camera.
+  - Find and add all overlay cameras across scene to the base camera.
   - Removes annoying warnings by referencing overlay cameras from different scenes.
+
+## Usage
+### UI camera
+todo
+### SceneStackSOManager
+`SceneStackSOManager` Reserializes all SceneStackSO by `ReserializeAllSceneStackSO()`.
+The method is called when below occurs.
+1. ExitingEditMode
+2. OnPreprocessBuild
+3. OnPostprocessAllAssets : when SceneAsset imported / deleted / moved
+
+`ReserializeAllSceneStackSO()` automatically saves SceneAssets when called.
+This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize any unsaved change.
+
+## Todo
+- async scene loading
