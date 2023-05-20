@@ -9,6 +9,14 @@ SceneStack is a URP CameraStack-like SceneManagement System for Multi-Scene Work
   - Removes annoying warnings by referencing overlay cameras from different scenes.
 
 ## Usage
+### Configure SceneStack
+todo
+### Open SceneStack
+todo : example on editor mode and code
+### Canvas Scene Order Sorter
+todo
+### Camera Stack Sorting Order
+todo
 ### UI scene
 todo
 ## Overview
@@ -24,6 +32,6 @@ This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize an
 
 ## Todo
 - async scene loading
-
+- check if scene is in build setting
 ## Credits & Similar Projects
 Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
