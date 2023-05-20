@@ -1,6 +1,6 @@
-# Malcha.SceneStack
+# SceneStack
 SceneStack is a URP CameraStack-like SceneManagement System for Multi-Scene Workflow.  
-Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
+
 
 ## Features
 - Multi-scene management
@@ -9,6 +9,7 @@ Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Efla
   - Removes annoying warnings by referencing overlay cameras from different scenes.
 
 ## Usage
+<<<<<<< HEAD
 ### UI camera
 todo
 ### SceneStackSOManager
@@ -23,3 +24,31 @@ This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize an
 
 ## Todo
 - async scene loading
+=======
+### Configure SceneStack
+todo
+### Open SceneStack
+todo : example on editor mode and code
+### Canvas Scene Order Sorter
+todo
+### Camera Stack Sorting Order
+todo
+### UI scene
+todo
+## Overview
+### SceneStackSOManager
+`SceneStackSOManager` Reserializes all `SceneStackSO` by `ReserializeAllSceneStackSO()`.
+The method is called when below occurs.
+1. `ExitingEditMode`
+2. `OnPreprocessBuild`
+3. `OnPostprocessAllAssets` : when SceneAsset is imported / deleted / moved
+
+`ReserializeAllSceneStackSO()` automatically saves dirtied `SceneAssetSO`s when called.
+This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize any unsaved change.
+
+## Todo
+- async scene loading
+- check if scene is in build setting
+## Credits & Similar Projects
+Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
+>>>>>>> main
