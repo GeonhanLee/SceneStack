@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c355929e83bd5274d91856f03b1cf6e6, type: 3}
-  m_Name: new SceneStack_ABC
+  m_Name: SceneStack_ABC
   m_EditorClassIdentifier: 
   _baseScene:
     _guid: 8c9cfa26abfee488c85f1582747f6a02
