@@ -27,7 +27,7 @@ namespace Malcha.SceneStack
                     {
                         if (camera.GetUniversalAdditionalCameraData().renderType == CameraRenderType.Overlay)
                         {
-                            if (camera.TryGetComponent<CameraStackSortingOrder>(out var cameraStackSortingOrder))
+                            if (camera.TryGetComponent<SceneStackCameraSorter>(out var cameraStackSortingOrder))
                             {
                                 camList.Add(camera, cameraStackSortingOrder.SortingOrder);
                             }

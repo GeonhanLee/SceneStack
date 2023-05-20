@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 namespace Malcha.SceneStack
 {
     [RequireComponent(typeof(Canvas))]
-    public class CanvasSceneOrderSorter : MonoBehaviour
+    public class SceneStackCanvasSorter : MonoBehaviour
     {
         private void Awake()
         {
