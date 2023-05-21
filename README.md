@@ -12,10 +12,14 @@ SceneStack is a URP CameraStack-like SceneManagement System for Multi-Scene Work
 
 ### Configure SceneStack
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.
+
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.
 
-// to-do : 순서대로 렌더된다고 설명
+### CameraStack
+Overlay cameras in scenes included in the SceneStack will be added to base camera when SceneStack is loaded.
+
+The order of cameras in camera stack is equivalent to the order of belonged scene in the SceneStack.
 
 ### Load SceneStack in editor mode
 You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`, or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.
@@ -27,16 +31,19 @@ You can load `SceneStack` using `SceneStackLoader` in runtime.
 
 ### SceneStackCanvasSorter 
 The raycast order of canvas across multiple scenes with same sorting order is not guranteed.
+
 `SceneStackCanvasSorter` sets the `sortingOrder` of a canvas to the index of a scene which belongs to.  
 Add `SceneStackCanvasSorter` component to your canvas object.
 
 ### SceneStackCameraSorter
 Camera is sorted in the camera stack with an index of  belonged scene.  
 However, you can sort multiple camera in the same scene with `SceneStackCameraSorter` component.  
+
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.
 
 ### SceneStackSOManager
 `SceneStackSOManager` Reserializes all `SceneStackSO` by `ReserializeAllSceneStackSO()`.
+
 The method is called when below occurs.  
 1. `ExitingEditMode`
 2. `OnPreprocessBuild`
@@ -47,7 +54,8 @@ This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize an
 
 ### SceneStackWarningSuppressor
 `SceneStackWarningSuppressor` removes annoying warnings on editor by removing cross scene references when saving or starting playmode.  
-It also selects and deselects camera when entering/exiting playmode to remove the error message below.
+
+It also selects and deselects camera when entering/exiting playmode to remove the error message below.  
 https://forum.unity.com/threads/indexoutofrangeexception-in-urp.1306230
 
 ## Usage
