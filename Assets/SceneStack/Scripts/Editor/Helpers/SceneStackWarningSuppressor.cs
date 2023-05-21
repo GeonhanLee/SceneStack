@@ -38,6 +38,7 @@ namespace Malcha.SceneStack.Editor
                     SaveAndClearCameraStack();
                     break;
                 case PlayModeStateChange.ExitingPlayMode:
+                    DeselectCamera();
                     break;
                 case PlayModeStateChange.EnteredPlayMode:
                 case PlayModeStateChange.EnteredEditMode:
