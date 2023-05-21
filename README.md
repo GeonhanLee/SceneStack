@@ -9,22 +9,6 @@ SceneStack is a URP CameraStack-like SceneManagement System for Multi-Scene Work
   - Removes annoying warnings by referencing overlay cameras from different scenes.
 
 ## Usage
-<<<<<<< HEAD
-### UI camera
-todo
-### SceneStackSOManager
-`SceneStackSOManager` Reserializes all SceneStackSO by `ReserializeAllSceneStackSO()`.
-The method is called when below occurs.
-1. ExitingEditMode
-2. OnPreprocessBuild
-3. OnPostprocessAllAssets : when SceneAsset imported / deleted / moved
-
-`ReserializeAllSceneStackSO()` automatically saves SceneAssets when called.
-This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize any unsaved change.
-
-## Todo
-- async scene loading
-=======
 ### Configure SceneStack
 todo
 ### Open SceneStack
@@ -51,4 +35,3 @@ This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize an
 - check if scene is in build setting
 ## Credits & Similar Projects
 Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
->>>>>>> main
