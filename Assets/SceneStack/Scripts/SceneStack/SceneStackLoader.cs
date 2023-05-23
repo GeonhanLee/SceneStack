@@ -19,7 +19,16 @@ namespace Malcha.SceneStack
             }
 
             SceneManager.LoadScene(stack.baseScene.path);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByPath(stack.baseScene.path));
+            SceneManager.sceneLoaded += SetActiveScene;
+            void SetActiveScene(Scene scene, LoadSceneMode _)
+            {
+                if(scene.path == stack.baseScene.path)
+                {
+                    SceneManager.SetActiveScene(SceneManager.GetSceneByPath(stack.baseScene.path));
+                    SceneManager.sceneLoaded -= SetActiveScene;
+                }
+            }
+            
 
             for (int i = 0; i < stack.overlayScenes.Count; i++)
             {
