@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.IO;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -17,7 +16,8 @@ namespace Malcha.SceneStack
 #endif
             public SceneData data = default;
 
-            public void OnAfterDeserialize() { }
+            public void OnAfterDeserialize() {
+            }
             public void OnBeforeSerialize()
             {
 #if UNITY_EDITOR
@@ -31,14 +31,11 @@ namespace Malcha.SceneStack
             {
                 if (!string.IsNullOrWhiteSpace(_guid))
                 {
-                    data.path = AssetDatabase.GUIDToAssetPath(_guid);
-                    data.name = Path.GetFileNameWithoutExtension(data.path);
+                    data = new(AssetDatabase.GUIDToAssetPath(_guid));
                 }
                 else
                 {
-                    data.path = string.Empty;
-                    data.name = string.Empty;
-                    //Debug.LogError("Wrong Scene GUID!");
+                    data = default;
                 }
             }
 #endif

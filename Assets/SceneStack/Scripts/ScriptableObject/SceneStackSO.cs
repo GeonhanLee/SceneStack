@@ -16,9 +16,7 @@ namespace Malcha.SceneStack
         {
             if (_baseScene == null || !_baseScene.IsValid) return null;
 
-            var tempSceneStack = new SceneStack();
-            tempSceneStack.baseScene = _baseScene.data;
-            tempSceneStack.overlayScenes = new List<SceneData>();
+            var tempSceneStack = new SceneStack(_baseScene.data);
 
             foreach (var overlayScene in _overlayScenes)
             {
