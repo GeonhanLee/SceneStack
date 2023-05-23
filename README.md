@@ -25,9 +25,17 @@ The order of cameras in camera stack is equivalent to the order of belonged scen
 You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`, or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.
 
 ### Load SceneStack in runtime
-You can load `SceneStack` using `SceneStackLoader` in runtime.
-
-// to-do : 
+You can load `SceneStack` using a static class, `SceneStackLoader` in runtime.
+```cs
+public void ExampleLoadSceneStackSO(SceneStackSO so)
+{
+  SceneStackLoader.LoadSceneStack(so);
+}
+public void ExampleLoadSceneStack(SceneStack ss)
+{
+  SceneStackLoader.LoadSceneStack(ss);
+}
+```
 
 ### SceneStackCanvasSorter 
 The raycast order of canvas across multiple scenes with same sorting order is not guranteed.
@@ -65,7 +73,9 @@ You can manage your UI camera & canvas on a per-scene basis.
 Create a UI camera with Render Type - Overlay and Culling Mask - UI.  
 Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
-## To-Do
+## Limits & To-Do
+The list below is not currently supported.
+- multiple base camera (e.g. split screen, render texture)
 - async scene loading
 - check if scene is in build setting
 
