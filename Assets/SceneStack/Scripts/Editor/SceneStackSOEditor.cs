@@ -23,7 +23,7 @@ namespace Malcha.SceneStack.Editor
             GUILayout.Space(10);
             if (GUILayout.Button("LoadScene (Editor Mode)"))
             {
-                SceneStackEditorUtility.OpenSceneStack(sceneStackSO.sceneStack);
+                SceneStackEditorUtility.OpenSceneStack(sceneStackSO.CloneSceneStack());
             }
             GUILayout.Space(10);
 
@@ -41,7 +41,7 @@ namespace Malcha.SceneStack.Editor
         [MenuItem("Assets/Open Scene Stack", priority = 19)]
         private static void OpenSceneStack()
         {
-            SceneStackEditorUtility.OpenSceneStack((Selection.activeObject as SceneStackSO).sceneStack);
+            SceneStackEditorUtility.OpenSceneStack((Selection.activeObject as SceneStackSO).CloneSceneStack());
         }
 
         [MenuItem("Assets/Open Scene Stack", priority = 19, validate = true)]

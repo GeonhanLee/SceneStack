@@ -12,26 +12,23 @@ namespace Malcha.SceneStack
         [SerializeField, FormerlySerializedAs("_overlayScenes")]
         private List<SceneReference> _overlayScenes = default;
 
-        public SceneStack sceneStack
+        public SceneStack CloneSceneStack() 
         {
-            get
+            if (_baseScene == null || !_baseScene.IsValid) return null;
+
+            var tempSceneStack = new SceneStack();
+            tempSceneStack.baseScene = _baseScene.data;
+            tempSceneStack.overlayScenes = new List<SceneData>();
+
+            foreach (var overlayScene in _overlayScenes)
             {
-                if (_baseScene == null || !_baseScene.IsValid) return null;
+                if (overlayScene == null || !_baseScene.IsValid)
+                    continue;
 
-                var tempSceneStack = new SceneStack();
-                tempSceneStack.baseScene = _baseScene.data;
-                tempSceneStack.overlayScenes = new List<SceneData>();
-
-                foreach (var overlayScene in _overlayScenes)
-                {
-                    if (overlayScene == null || !_baseScene.IsValid)
-                        continue;
-
-                    tempSceneStack.overlayScenes.Add(overlayScene.data);
-                }
-
-                return tempSceneStack;
+                tempSceneStack.overlayScenes.Add(overlayScene.data);
             }
+
+            return tempSceneStack;
         }
 
     }

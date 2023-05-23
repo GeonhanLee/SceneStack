@@ -3,15 +3,14 @@ using UnityEngine.SceneManagement;
 
 namespace Malcha.SceneStack
 {
-    public class SceneStackLoader : MonoBehaviour
+    public static class SceneStackLoader
     {
-        [SerializeField] private SceneStackSO _sceneStackSO = default;
-        public void LoadSceneStack()
+        public static void LoadSceneStack(SceneStackSO sceneStackSO)
         {
-            if (_sceneStackSO) LoadSceneStack(_sceneStackSO.sceneStack);
+            LoadSceneStack(sceneStackSO.CloneSceneStack());
         }
 
-        public void LoadSceneStack(SceneStack stack)
+        public static void LoadSceneStack(SceneStack stack)
         {
             if (!SceneStack.IsValid(stack))
             {

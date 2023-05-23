@@ -283,8 +283,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057674686}
-        m_TargetAssemblyTypeName: SceneStackLoader, Assembly-CSharp
+      - m_Target: {fileID: 1057674688}
+        m_TargetAssemblyTypeName: Malcha.SceneStack.Sample.LoadSceneStackButton,
+          Assembly-CSharp
         m_MethodName: LoadSceneStack
         m_Mode: 1
         m_Arguments:
@@ -345,8 +346,8 @@ GameObject:
   - component: {fileID: 1057674683}
   - component: {fileID: 1057674682}
   - component: {fileID: 1057674681}
-  - component: {fileID: 1057674686}
   - component: {fileID: 1057674687}
+  - component: {fileID: 1057674688}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -439,19 +440,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1057674686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057674680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe62ee3d0f539c8479833486c002ed95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneStackSO: {fileID: 11400000, guid: 01e74832d5fdb9a4fa03d4a3e0c3ce3b, type: 2}
 --- !u!114 &1057674687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +452,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eacaeafc32b6c14d8552edaa1f2de81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1057674688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057674680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29b50c1b227c7f478cd2da2928e25f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneStackSO: {fileID: 11400000, guid: 01e74832d5fdb9a4fa03d4a3e0c3ce3b, type: 2}
 --- !u!1 &1287747453
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,8 +676,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057674686}
-        m_TargetAssemblyTypeName: SceneStackLoader, Assembly-CSharp
+      - m_Target: {fileID: 1057674688}
+        m_TargetAssemblyTypeName: Malcha.SceneStack.Sample.LoadSceneStackButton,
+          Assembly-CSharp
         m_MethodName: LoadSceneStack
         m_Mode: 1
         m_Arguments:
