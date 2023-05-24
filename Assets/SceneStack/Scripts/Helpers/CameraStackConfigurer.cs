@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Malcha.SceneStack
             for (int i = 0; i < SceneManager.sceneCount; ++i)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                Dictionary<Camera, int> camList = new();
+                List<Tuple<Camera, int>> camList = new();
 
                 // iterate scene
                 foreach (var rootGO in scene.GetRootGameObjects())
@@ -29,16 +30,16 @@ namespace Malcha.SceneStack
                         {
                             if (camera.TryGetComponent<SceneStackCameraSorter>(out var cameraStackSortingOrder))
                             {
-                                camList.Add(camera, cameraStackSortingOrder.SortingOrder);
+                                camList.Add(new(camera, cameraStackSortingOrder.SortingOrder));
                             }
                             else
                             {
-                                camList.Add(camera, 0);
+                                camList.Add(new(camera, 0));
                             }
                         }
                     }
                 }
-                cameraData.cameraStack.AddRange(camList.Keys.OrderBy(x => camList[x]));
+                cameraData.cameraStack.AddRange(camList.OrderBy(x => x.Item2).Select(x => x.Item1));
             }
         }
 
