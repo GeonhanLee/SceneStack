@@ -1,6 +1,6 @@
 # SceneStack
 SceneStack is a URP CameraStack-like SceneManagement System for Multi-Scene Workflow.  
-
+SceneStack offers a range of features and guides to assist in scene and UI management.
 
 ## Features
 - Multi-scene management
@@ -49,6 +49,15 @@ However, you can sort multiple camera in the same scene with `SceneStackCameraSo
 
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.
 
+## Usage
+
+### UI scene
+You can manage your UI camera & canvas on a per-scene basis using SceneStack by following these steps.
+1. Create a UI camera with Render Type - Overlay and Culling Mask - UI.  
+2. Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
+
+## what should i name this??
+
 ### SceneStackSOManager
 `SceneStackSOManager` Reserializes all `SceneStackSO` by `ReserializeAllSceneStackSO()`.
 
@@ -57,27 +66,23 @@ The method is called when below occurs.
 2. `OnPreprocessBuild`
 3. `OnPostprocessAllAssets` : when SceneAsset is imported / deleted / moved
 
-`ReserializeAllSceneStackSO()` automatically saves dirtied `SceneAssetSO`s when called.  
-This is because `AssetDatabase.ForceReserializeAssets()` does not reserialize any unsaved change.
+`ReserializeAllSceneStackSO()` automatically saves dirtied `SceneAssetSO` when called.  
+This is because `AssetDatabase.ForceReserializeAssets()` serializes before  the modification is applied.
 
 ### SceneStackWarningSuppressor
-`SceneStackWarningSuppressor` removes annoying warnings on editor by removing cross scene references when saving or starting playmode.  
+`SceneStackWarningSuppressor` removes annoying warnings on the editor by removing cross scene references when entering/exiting playmode.  
 
 It also selects and deselects camera when entering/exiting playmode to remove the error message below.  
 https://forum.unity.com/threads/indexoutofrangeexception-in-urp.1306230
 
-## Usage
-
-### UI scene
-You can manage your UI camera & canvas on a per-scene basis.  
-Create a UI camera with Render Type - Overlay and Culling Mask - UI.  
-Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
 ## Limits & To-Do
 The list below is not currently supported.
-- multiple base camera (e.g. split screen, render texture)
-- async scene loading
-- check if scene is in build setting
+- Multiple base camera (e.g. split screen, render texture)
+- Async scene loading
+- Check if scene is in build setting
 
 ## Credits & Similar Projects
-Heavily inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
+The code related to `ReserializeAllSceneStackSO` is based and inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference).
+- Unlike `Eflatun.SceneReference`, SceneStack doesn't generate a Scene GUID to Path Map. Instead, SceneStack reserializes all `SceneStackSO`.
+- SceneStack doesn't provide SceneReference API to user.
