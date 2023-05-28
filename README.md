@@ -94,3 +94,6 @@ The list below is not currently supported.
 `SceneReference` and `ReserializeAllSceneStackSO()` is based and inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference).
 - Unlike `Eflatun.SceneReference`, SceneStack doesn't generate a Scene GUID to Path Map. Instead, SceneStack reserializes all `SceneStackSO`.
 - SceneStack doesn't provide SceneReference API to user.
+
+## License
+MIT License. Refer to the [LICENSE.md](./LICENSE.md) file.
