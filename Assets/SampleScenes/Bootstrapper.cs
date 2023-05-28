@@ -11,9 +11,9 @@ namespace Malcha.SceneStack.Sample
             var stack = new SceneStack("BaseScene");
             stack.overlayScenes = new List<SceneData>
             {
-                new SceneData("Assets/SampleScenes/OverlaySceneA.unity"),
-                new SceneData("OverlaySceneB"),
-                new SceneData("SampleScenes/OverlaySceneC")
+                new SceneData("Assets/SampleScenes/UIOverlaySceneA.unity"),
+                new SceneData("UIOverlaySceneB"),
+                new SceneData("SampleScenes/UIOverlaySceneC")
             };
 
             SceneStackLoader.LoadSceneStack(stack);
