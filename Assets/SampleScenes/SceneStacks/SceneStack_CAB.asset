@@ -19,10 +19,10 @@ MonoBehaviour:
   _overlayScenes:
   - _guid: 8a8d774a926d6634abadf6fb3978c914
     data:
-      path: Assets/SampleScenes/OverlaySceneC.unity
+      path: Assets/SampleScenes/UIOverlaySceneC.unity
   - _guid: 5956ec7ad76806443871958ef722ad8f
     data:
-      path: Assets/SampleScenes/OverlaySceneA.unity
+      path: Assets/SampleScenes/UIOverlaySceneA.unity
   - _guid: dd3de1b4eccbced4298e695583ed190c
     data:
-      path: Assets/SampleScenes/OverlaySceneB.unity
+      path: Assets/SampleScenes/UIOverlaySceneB.unity
