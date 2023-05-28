@@ -10,7 +10,8 @@ SceneStack is a multi-scene management system with URP CameraStack support.
 ## Usage
 ### UI Scene
 Using SceneStack, UI camera & canvas can be managed in separate scenes.  
-// need img
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/38aef70c-28f4-4048-8aa0-afe2c46d43d3)
+
 1. Create a UI camera with Render Type - Overlay and Culling Mask - UI.  
 2. Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
@@ -18,20 +19,23 @@ Using SceneStack, UI camera & canvas can be managed in separate scenes.
 
 ### Configure SceneStack
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.  
-// need img
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/6264f746-0f93-4531-bea2-a0a42909dc17)  
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.  
-// need img
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/8a0d46a3-46af-4584-8293-681138b33655)
 
 ### CameraStack
 Overlay cameras in scenes included in the SceneStack will be added to base camera when SceneStack is loaded.  
-// need img  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0248418f-a991-4af3-b7f9-7b2cb9a20f30)  
 The order of cameras in camera stack is equivalent to the order of belonged scene in the SceneStack.  
-// need img  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/1411dbb5-b0b1-42fe-ac17-cd0bd152754d)  
 
 ### Load SceneStack in editor mode
-You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`, or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.  
-// need img
+You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`,  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/77394d96-bf7d-49b8-9ccc-574b21f8f91f)  
+or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/b6523835-5d5b-42db-a471-8521164c9769)
+
 
 ### Load SceneStack in runtime
 You can load `SceneStack` using a static class, `SceneStackLoader` in runtime.
@@ -51,14 +55,14 @@ The raycast order of canvas across multiple scenes with same sorting order is no
 
 `SceneStackCanvasSorter` sets the `sortingOrder` of a canvas to the index of a scene which belongs to.  
 Add `SceneStackCanvasSorter` component to your canvas object.  
-// need img  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0697f7f1-9691-4556-a163-89c74ba821d1)
 
 ### SceneStackCameraSorter
 Camera is sorted in the camera stack with an index of  belonged scene.  
 However, you can sort multiple camera in the same scene with `SceneStackCameraSorter` component.  
 
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.  
-// need img  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/71b3e9dc-b32f-402a-b6e4-2e404dd4f2a1)
 
 ## Overview
 
