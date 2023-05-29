@@ -17,17 +17,31 @@ Using SceneStack, UI camera & canvas can be managed in separate scenes.
 
 ## Guide
 
-### Configure SceneStack
+### Configure SceneStack in editor mode
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/6264f746-0f93-4531-bea2-a0a42909dc17)  
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/8a0d46a3-46af-4584-8293-681138b33655)
 
+### Configure SceneStack in runtime
+You can create your own `SceneStack` without `SceneStackSO`.
+```cs
+SceneStack stack = new SceneStack("BaseScene");
+// stack.baseScene = new SceneData("BaseScene"); is also ok.
+stack.overlayScenes = new List<SceneData>
+{
+  new SceneData("Assets/SampleScenes/UIOverlaySceneA.unity"),
+  new SceneData("UIOverlaySceneB"),
+  new SceneData("SampleScenes/UIOverlaySceneC")
+};
+```
+You can fill the class `SceneData`'s constructor with the name or path of the scene as [`SceneManager.LoadScene`](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html).
+
 ### CameraStack
-Overlay cameras in scenes included in the SceneStack will be added to base camera when SceneStack is loaded.  
+Overlay cameras in scenes included in the `SceneStack` will be added to base camera when `SceneStack` is loaded.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0248418f-a991-4af3-b7f9-7b2cb9a20f30)  
-The order of cameras in camera stack is equivalent to the order of belonged scene in the SceneStack.  
+The order of cameras in camera stack is equivalent to the order of belonged scene in the `SceneStack`.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/1411dbb5-b0b1-42fe-ac17-cd0bd152754d)  
 
 ### Load SceneStack in editor mode
