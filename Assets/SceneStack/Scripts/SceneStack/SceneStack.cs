@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,12 +18,11 @@ namespace Malcha.SceneStack
                 return;
             }
 
-            // is path
-            if (sceneName.Length > 6 && sceneName[^6..] == ".unity")
+            if (Path.GetExtension(sceneName) == "unity")
             {
                 _path = sceneName;
             }
-            else // is not path
+            else
             {
                 _path = sceneName;
 
@@ -46,7 +44,9 @@ namespace Malcha.SceneStack
 
         public string path => _path;
         public string name => Path.GetFileNameWithoutExtension(_path);
-        public bool IsValid => !string.IsNullOrWhiteSpace(_path);
+
+        public bool IsValid => HasValue;
+        public bool HasValue => !string.IsNullOrWhiteSpace(_path);
     }
 
     [System.Serializable]
@@ -73,8 +73,17 @@ namespace Malcha.SceneStack
 
         public static bool IsValid(SceneStack stack)
         {
-            if (stack == null) return false;
-            if (!stack.baseScene.IsValid) return false;
+            if (stack == null) 
+                return false;
+
+            if (!stack.baseScene.IsValid) 
+                return false;
+
+            if (stack.overlayScenes == null) 
+                return false;
+            if (stack.overlayScenes.Any(overlayScene => !overlayScene.IsValid)) 
+                return false;
+
             return true;
         }
     }
