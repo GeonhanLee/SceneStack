@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Malcha.SceneStack
@@ -9,23 +10,23 @@ namespace Malcha.SceneStack
     [System.Serializable]
     public struct SceneData
     {
-        public string path;
+        [SerializeField] private string _path;
         public SceneData(string sceneName)
         {
             if (string.IsNullOrWhiteSpace(sceneName))
             {
-                path = default;
+                _path = default;
                 return;
             }
 
             // is path
             if (sceneName.Length > 6 && sceneName[^6..] == ".unity")
             {
-                path = sceneName;
+                _path = sceneName;
             }
             else // is not path
             {
-                path = sceneName;
+                _path = sceneName;
 
                 sceneName += ".unity";
                 sceneName = Path.GetFileName(sceneName);
@@ -36,15 +37,16 @@ namespace Malcha.SceneStack
                     string foundPath = SceneUtility.GetScenePathByBuildIndex(i);
                     if (sceneName == Path.GetFileName(foundPath))
                     {
-                        path = foundPath;
+                        _path = foundPath;
                         break;
                     }
                 }
             }
         }
 
-        public string name => Path.GetFileNameWithoutExtension(path);
-        public bool IsValid => !string.IsNullOrWhiteSpace(path);
+        public string path => _path;
+        public string name => Path.GetFileNameWithoutExtension(_path);
+        public bool IsValid => !string.IsNullOrWhiteSpace(_path);
     }
 
     [System.Serializable]
