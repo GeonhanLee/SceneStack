@@ -8,6 +8,7 @@ SceneStack is a multi-scene management system with URP CameraStack support.
   - Removes annoying cross-Scene reference warnings by referencing overlay cameras from another scene.
 
 ## Usage
+
 ### UI Scene
 Using SceneStack, UI camera & canvas can be managed in separate scenes.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/38aef70c-28f4-4048-8aa0-afe2c46d43d3)
@@ -16,6 +17,9 @@ Using SceneStack, UI camera & canvas can be managed in separate scenes.
 2. Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
 ## Guide
+
+### Getting started
+Add `using Malcha.SceneStack;`
 
 ### Configure SceneStack in editor mode
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.  
