@@ -21,13 +21,21 @@ namespace Malcha.SceneStack.Editor
         private static void OnSceneListChanged()
         {
             _scenePathToScene.Clear(); 
-            Array.ForEach(EditorBuildSettings.scenes, scene => _scenePathToScene.Add(scene.path, scene));
+            Array.ForEach(EditorBuildSettings.scenes, scene =>
+            {
+                _scenePathToScene.Add(scene.path, scene);
+                Debug.Log(scene.path);
+            }
+            );
         }
 
-        public static bool IsSceneInBuildSettingsAndEnabled(string path)
+        public static bool IsInBuildAndEnabled(string scenePath)
         {
-            var buildPath = ScenePathUtil.RelativeToBuildSettingsPath(path);
-            return _scenePathToScene.TryGetValue(buildPath, out var scene) && scene.enabled;
+            if(_scenePathToScene.TryGetValue(scenePath, out var scene))
+            {
+                return scene.enabled;
+            }
+            return false;
         }
     }
 }
