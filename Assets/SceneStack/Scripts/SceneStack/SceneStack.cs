@@ -9,44 +9,13 @@ namespace Malcha.SceneStack
     [System.Serializable]
     public struct SceneData
     {
-        [SerializeField] private string _path;
-        public SceneData(string sceneName)
-        {
-            if (string.IsNullOrWhiteSpace(sceneName))
-            {
-                _path = default;
-                return;
-            }
+        public string path;
+        public SceneData(string sceneName) => path = sceneName;
 
-            if (Path.GetExtension(sceneName) == "unity")
-            {
-                _path = sceneName;
-            }
-            else
-            {
-                _path = sceneName;
-
-                sceneName += ".unity";
-                sceneName = Path.GetFileName(sceneName);
-
-                int sceneCount = SceneManager.sceneCountInBuildSettings;
-                for (int i = 0; i < sceneCount; i++)
-                {
-                    string foundPath = SceneUtility.GetScenePathByBuildIndex(i);
-                    if (sceneName == Path.GetFileName(foundPath))
-                    {
-                        _path = foundPath;
-                        break;
-                    }
-                }
-            }
-        }
-
-        public string path => _path;
-        public string name => Path.GetFileNameWithoutExtension(_path);
-
-        public bool IsValid => HasValue;
-        public bool HasValue => !string.IsNullOrWhiteSpace(_path);
+        public string name => 
+            Path.HasExtension(path) ? 
+            Path.GetFileNameWithoutExtension(path) :
+            Path.GetFileNameWithoutExtension(path + ".unity");
     }
 
     [System.Serializable]
@@ -65,26 +34,10 @@ namespace Malcha.SceneStack
             baseScene = baseSceneData;
         }
 
-        public SceneStack(SceneStack other)
+        public SceneStack(SceneStack stack)
         {
-            baseScene = other.baseScene;
-            overlayScenes = other.overlayScenes.ToList();
-        }
-
-        public static bool IsValid(SceneStack stack)
-        {
-            if (stack == null) 
-                return false;
-
-            if (!stack.baseScene.IsValid) 
-                return false;
-
-            if (stack.overlayScenes == null) 
-                return false;
-            if (stack.overlayScenes.Any(overlayScene => !overlayScene.IsValid)) 
-                return false;
-
-            return true;
+            baseScene = stack.baseScene;
+            overlayScenes = stack.overlayScenes.ToList();
         }
     }
 }

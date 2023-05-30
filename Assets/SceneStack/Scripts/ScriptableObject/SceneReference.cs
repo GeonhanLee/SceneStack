@@ -24,7 +24,8 @@ namespace Malcha.SceneStack
                 SetSceneData();
 #endif
             }
-            public bool IsValid => data.IsValid;
+            // work needed!
+            public bool IsValid => true;
 
 #if UNITY_EDITOR
             private void SetSceneData()

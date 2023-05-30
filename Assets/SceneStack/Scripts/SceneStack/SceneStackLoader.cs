@@ -12,7 +12,7 @@ namespace Malcha.SceneStack
 
         public static void LoadSceneStack(SceneStack stack)
         {
-            if (!SceneStack.IsValid(stack))
+            if (stack == null)
             {
                 Debug.LogError("SceneStack is not valid!");
                 return;

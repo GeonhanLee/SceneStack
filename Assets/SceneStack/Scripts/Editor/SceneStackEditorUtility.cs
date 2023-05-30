@@ -13,7 +13,7 @@ namespace Malcha.SceneStack.Editor
                 Debug.LogError("Do not use OpenSceneStack in play mode!");
                 return;
             }
-            if (!SceneStack.IsValid(stack))
+            if (stack == null)
             {
                 Debug.LogError("SceneStack is not valid!");
                 return;
