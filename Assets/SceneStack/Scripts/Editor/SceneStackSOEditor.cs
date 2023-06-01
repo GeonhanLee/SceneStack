@@ -7,6 +7,15 @@ namespace Malcha.SceneStack.Editor
     [CustomEditor(typeof(SceneStackSO))]
     public class SceneStackSOEditor : UnityEditor.Editor
     {
+        private void OnEnable()
+        {
+            EditorBuildSettingsSceneManager.SceneListChanged += Repaint;
+        }
+        private void OnDisable()
+        {
+            EditorBuildSettingsSceneManager.SceneListChanged -= Repaint;
+        }
+
         private class SceneReference
         {
             public string guid;

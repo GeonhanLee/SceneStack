@@ -10,12 +10,14 @@ namespace Malcha.SceneStack.Editor
     public class EditorBuildSettingsSceneManager
     {
         private static Dictionary<string, EditorBuildSettingsScene> _scenePathToScene;
+        public static event Action SceneListChanged = ()=> { };
         static EditorBuildSettingsSceneManager()
         {
             _scenePathToScene = new();
 
             OnSceneListChanged();
             EditorBuildSettings.sceneListChanged += OnSceneListChanged;
+            EditorBuildSettings.sceneListChanged += () => SceneListChanged?.Invoke();
         }
 
         private static void OnSceneListChanged()
@@ -24,7 +26,6 @@ namespace Malcha.SceneStack.Editor
             Array.ForEach(EditorBuildSettings.scenes, scene =>
             {
                 _scenePathToScene.Add(scene.path, scene);
-                Debug.Log(scene.path);
             }
             );
         }
