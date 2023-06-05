@@ -15,14 +15,14 @@ MonoBehaviour:
   _baseScene:
     _guid: 8c9cfa26abfee488c85f1582747f6a02
     data:
-      _path: Assets/SampleScenes/BaseScene.unity
+      path: Assets/SampleScenes/BaseScene.unity
   _overlayScenes:
   - _guid: 8a8d774a926d6634abadf6fb3978c914
     data:
-      _path: Assets/SampleScenes/UIOverlaySceneC.unity
+      path: Assets/SampleScenes/UIOverlaySceneC.unity
   - _guid: 5956ec7ad76806443871958ef722ad8f
     data:
-      _path: Assets/SampleScenes/UIOverlaySceneA.unity
+      path: Assets/SampleScenes/UIOverlaySceneA.unity
   - _guid: dd3de1b4eccbced4298e695583ed190c
     data:
-      _path: Assets/SampleScenes/UIOverlaySceneB.unity
+      path: Assets/SampleScenes/UIOverlaySceneB.unity

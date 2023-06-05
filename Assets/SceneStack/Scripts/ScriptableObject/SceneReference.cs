@@ -24,8 +24,7 @@ namespace Malcha.SceneStack
                 SetSceneData();
 #endif
             }
-            // work needed!
-            public bool IsValid => true;
+            public bool HasValue => !string.IsNullOrWhiteSpace(_guid);
 
 #if UNITY_EDITOR
             private void SetSceneData()
@@ -41,33 +40,5 @@ namespace Malcha.SceneStack
             }
 #endif
         }
-
-#if UNITY_EDITOR
-        [CustomPropertyDrawer(typeof(SceneReference))]
-        private class SceneReferencePropertyDrawer : PropertyDrawer
-        {
-            public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-            {
-                var guidRelative = property.FindPropertyRelative("_guid");
-
-                var path = AssetDatabase.GUIDToAssetPath(guidRelative.stringValue);
-                var sceneAsset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
-
-                var content = EditorGUI.BeginProperty(position, label, guidRelative);
-
-                EditorGUI.BeginChangeCheck();
-
-                var target = EditorGUI.ObjectField(position, content, sceneAsset, typeof(SceneAsset), false);
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    guidRelative.stringValue = AssetDatabase.GUIDFromAssetPath(AssetDatabase.GetAssetPath(target)).ToString();
-                }
-
-                EditorGUI.EndProperty();
-            }
-        }
-#endif
-
     }
 }

@@ -14,13 +14,13 @@ namespace Malcha.SceneStack
 
         public SceneStack CloneSceneStack() 
         {
-            if (_baseScene == null || !_baseScene.IsValid) return null;
+            if (_baseScene == null || !_baseScene.HasValue) return null;
 
             var tempSceneStack = new SceneStack(_baseScene.data);
 
             foreach (var overlayScene in _overlayScenes)
             {
-                if (overlayScene == null || !_baseScene.IsValid)
+                if (overlayScene == null || !overlayScene.HasValue)
                     continue;
 
                 tempSceneStack.overlayScenes.Add(overlayScene.data);
