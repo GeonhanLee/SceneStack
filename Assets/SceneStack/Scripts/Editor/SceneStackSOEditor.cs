@@ -1,112 +1,139 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static log4net.Appender.ColoredConsoleAppender;
 
 namespace Malcha.SceneStack.Editor
 {
     [CustomEditor(typeof(SceneStackSO))]
     public class SceneStackSOEditor : UnityEditor.Editor
     {
-        private SceneStackSO _sceneStackSO;
-
-        private ObjectField _baseSceneField;
-        private ListView _overlaySceneListView;
-        private HelpBox _baseSceneWarning;
-
+        [SerializeField] private StyleSheet _styleSheet;
+        private VisualElement _root = null;
         private void OnEnable()
         {
-            _sceneStackSO = (SceneStackSO)target;
-
-            _baseSceneField = CreateBaseSceneField();
-            _overlaySceneListView = CreateOverlaySceneListView();
-            _baseSceneWarning = CreateBaseSceneWarning();
-
-            //EditorBuildSettingsSceneManager.SceneListChanged += ;
+            EditorBuildSettingsSceneManager.SceneListChanged += SetAllObjectLabelColor;
         }
         private void OnDisable()
         {
-            //EditorBuildSettingsSceneManager.SceneListChanged -= ;
+            EditorBuildSettingsSceneManager.SceneListChanged -= SetAllObjectLabelColor;
         }
         public override VisualElement CreateInspectorGUI()
         {
-            var root = new VisualElement();
+            _root = new VisualElement();
+            _root.styleSheets.Add(_styleSheet);
 
-            root.Add(CreateOpenButton());
+            var baseSceneWarning = CreateBaseSceneWarning();
+            var baseSceneField = CreateBaseSceneField(baseSceneWarning);
+            var overlaySceneListView = CreateOverlaySceneListView();
 
-            root.Add(_baseSceneWarning);
-            root.Add(_baseSceneField);
+            _root.Add(CreateOpenButton());
+
+            _root.Add(baseSceneWarning);
+            _root.Add(baseSceneField);
 
             var box = new Box();
+
             box.Add(new Label("Overlay Scenes"));
-            box.Add(_overlaySceneListView);
+            box.Add(overlaySceneListView);
 
-            root.Add(box);
+            box.AddToClassList("scenestack-box");
+            overlaySceneListView.AddToClassList("scenestack-list");
 
-            const int padding = 5;
+            _root.Add(box);
+            return _root;
+        }
 
-            box.style.paddingTop = padding;
-            box.style.paddingBottom = padding;
-            box.style.paddingLeft = padding;
-            box.style.paddingRight = padding;
+        private void SetAllObjectLabelColor()
+        {
+            if (_root == null) return;
 
-            _overlaySceneListView.style.marginTop = padding;
+            _root.Query<ObjectField>().ForEach(
+                field => {
+                    SceneAsset sceneAsset = field.value as SceneAsset;
+                    SetObjectLabelColor(field, sceneAsset);
+                });
+        }
+        void SetObjectLabelColor(ObjectField objectField, SceneAsset sceneAsset)
+        {
+            Label objectLabel = objectField.Q(className: ObjectField.objectUssClassName).Q<Label>();
 
-            return root;
+            objectLabel.EnableInClassList("scenestack-enabled", false);
+            objectLabel.EnableInClassList("scenestack-disabled", false);
+            objectLabel.EnableInClassList("scenestack-missing", false);
+
+            if (sceneAsset == null)
+            {
+                objectLabel.EnableInClassList("scenestack-missing", true);
+                return;
+            }
+
+            string path = AssetDatabase.GetAssetPath(sceneAsset);
+
+            if (EditorBuildSettingsSceneManager.IsInBuild(path))
+            {
+                if (EditorBuildSettingsSceneManager.IsEnabled(path))
+                {
+                    objectLabel.EnableInClassList("scenestack-enabled", true);
+                }
+                else
+                {
+                    objectLabel.EnableInClassList("scenestack-disabled", true);
+                }
+            }
+            else
+            {
+                objectLabel.EnableInClassList("scenestack-missing", true);
+            }
         }
 
         private Button CreateOpenButton()
         {
             void OpenSceneStack()
             {
-                SceneStackEditorUtility.OpenSceneStack(_sceneStackSO.CloneSceneStack());
+                var sceneStackSO = (SceneStackSO)target;
+                SceneStackEditorUtility.OpenSceneStack(sceneStackSO.CloneSceneStack());
             }
             var openButton = new Button(OpenSceneStack) { text = "OpenScene (Editor Mode)" };
             return openButton;
-        }
-        private void ResetSceneField(ObjectField objectField, SerializedProperty sceneRefProperty)
-        {
-            var baseScenePath = GetSceneAssetPath(sceneRefProperty);
-            if (string.IsNullOrEmpty(baseScenePath))
-            {
-                objectField.SetValueWithoutNotify(null);
-            }
-            else
-            {
-                objectField.SetValueWithoutNotify(AssetDatabase.LoadAssetAtPath<SceneAsset>(baseScenePath));
-            }
         }
 
         private HelpBox CreateBaseSceneWarning()
         {
             var helpBox = new HelpBox("Please make sure to assign the Base Scene", HelpBoxMessageType.Warning);
-
-            if (_baseSceneField.value == null)
-            {
-                //EditorGUILayout.HelpBox("Please make sure to assign the Base Scene", MessageType.Warning);
-            }
             return helpBox;
         }
-        private ObjectField CreateBaseSceneField()
+        private void SetElementActive(VisualElement e, bool active)
+        {
+            e.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+        private ObjectField CreateBaseSceneField(HelpBox warning)
         {
             var baseSceneField = new ObjectField("Base Scene");
             baseSceneField.objectType = typeof(SceneAsset);
 
             var baseSceneProp = serializedObject.FindProperty("_baseScene");
-            ResetSceneField(baseSceneField, baseSceneProp);
+            var baseSceneAsset = GetSceneAsset(baseSceneProp);
+
+            baseSceneField.SetValueWithoutNotify(baseSceneAsset);
+            SetElementActive(warning, baseSceneField.value == null);
+            SetObjectLabelColor(baseSceneField, baseSceneAsset);
 
             baseSceneField.RegisterCallback<ChangeEvent<Object>>((evt) =>
             {
-                baseSceneProp.FindPropertyRelative("_guid").stringValue = GetGUID(evt.newValue as SceneAsset);
+                SetGUID(baseSceneProp, evt.newValue as SceneAsset);
+                SetObjectLabelColor(baseSceneField, evt.newValue as SceneAsset);
                 serializedObject.ApplyModifiedProperties();
             });
 
             baseSceneField.TrackPropertyValue(baseSceneProp, (newProp) => {
-                ResetSceneField(baseSceneField, newProp);
+                baseSceneField.SetValueWithoutNotify(GetSceneAsset(newProp));
+                SetElementActive(warning, baseSceneField.value == null);
             });
-
 
             return baseSceneField;
         }
@@ -117,9 +144,9 @@ namespace Malcha.SceneStack.Editor
             var overlaySceneListProp = serializedObject.FindProperty("_overlayScenes");
 
             List<SceneAsset> sceneAssets = new();
-            ResetSceneViewList(overlaySceneListProp);
+            SetSourceList(overlaySceneListProp);
 
-            void SetProperties()
+            void SetSerializedList()
             {
                 overlaySceneListProp.ClearArray();
 
@@ -127,25 +154,18 @@ namespace Malcha.SceneStack.Editor
                 {
                     overlaySceneListProp.InsertArrayElementAtIndex(i);
                     var curProp = overlaySceneListProp.GetArrayElementAtIndex(i);
-                    if (sceneAssets[i] != null)
-                    {
-                        curProp.FindPropertyRelative("_guid").stringValue = GetGUID(sceneAssets[i]);
-                    }
-                    else
-                    {
-                        curProp.FindPropertyRelative("_guid").stringValue = null;
-                    }
+
+                    SetGUID(curProp, sceneAssets[i]);
                 }
 
                 serializedObject.ApplyModifiedProperties();
             }
-            void ResetSceneViewList(SerializedProperty prop)
+            void SetSourceList(SerializedProperty prop)
             {
                 sceneAssets.Clear();
                 for (int i = 0; i < prop.arraySize; ++i)
                 {
-                    var path = GetSceneAssetPath(prop.GetArrayElementAtIndex(i));
-                    sceneAssets.Add(AssetDatabase.LoadAssetAtPath<SceneAsset>(path));
+                    sceneAssets.Add(GetSceneAsset(prop.GetArrayElementAtIndex(i)));
                 }
             }
 
@@ -159,28 +179,29 @@ namespace Malcha.SceneStack.Editor
             void Callback(ChangeEvent<Object> evt, int i)
             {
                 sceneAssets[i] = (SceneAsset)evt.newValue;
-                SetProperties();
+                SetSerializedList();
             }
+            void OnItemIndexChanged(int oldIndex, int newIndex)
+            {
+                overlayListView.Rebuild();
+                SetSerializedList();
+            }
+            void OnItemsSourceSizeChanged()
+            {
+                SetSerializedList();
+            }
+
             void BindItem(VisualElement e, int i)
             {
                 var field = e as ObjectField;
                 field.SetValueWithoutNotify(sceneAssets[i]);
+                SetObjectLabelColor(field, sceneAssets[i]);
                 field.RegisterCallback<ChangeEvent<Object>, int>(Callback, i);
             }
             void UnBindItem(VisualElement e, int i)
             {
                 var field = e as ObjectField;
                 field.UnregisterCallback<ChangeEvent<Object>, int>(Callback);
-            }
-
-            void OnItemIndexChanged(int oldIndex, int newIndex)
-            {
-                overlayListView.Rebuild();
-                SetProperties();
-            }
-            void OnItemsSourceSizeChanged()
-            {
-                SetProperties();
             }
 
             overlayListView.itemsSource = sceneAssets;
@@ -193,11 +214,13 @@ namespace Malcha.SceneStack.Editor
             overlayListView.viewController.itemsSourceSizeChanged += OnItemsSourceSizeChanged;
 
             overlayListView.TrackPropertyValue(overlaySceneListProp,
-                (prop) => { 
-                    ResetSceneViewList(prop);
-                    _overlaySceneListView.RefreshItems();
+                (newProp) => { 
+                    SetSourceList(newProp);
+                    overlayListView.RefreshItems();
                 });
 
+
+            overlayListView.showBorder = true;
             overlayListView.reorderable = true;
             overlayListView.reorderMode = ListViewReorderMode.Animated;
             overlayListView.showAddRemoveFooter = true;
@@ -205,33 +228,33 @@ namespace Malcha.SceneStack.Editor
 
             return overlayListView;
         }
-        
-        /*
-        void DrawWarnings()
+
+
+        private string GetGUID(SerializedProperty sceneRef)
         {
-            if (string.IsNullOrWhiteSpace(baseScene.guid) || baseScene.guid == Guid.Empty.ToString("N"))
+            return sceneRef.FindPropertyRelative("_guid").stringValue;
+        }
+        private void SetGUID(SerializedProperty sceneRef, SceneAsset sceneAsset)
+        {
+            string GetGUID(SceneAsset sceneAsset)
             {
-                EditorGUILayout.HelpBox("Please make sure to assign the Base Scene", MessageType.Warning);
+                if (sceneAsset == null) return null;
+                var path = AssetDatabase.GetAssetPath(sceneAsset);
+                return string.IsNullOrEmpty(path) ? null : AssetDatabase.AssetPathToGUID(path);
             }
-
-            //if (!EditorBuildSettingsSceneManager.IsInBuildAndEnabled(baseScene.data.path))
-            //{
-            //    EditorGUILayout.HelpBox("Base scene is not in build or disabled!", MessageType.Warning);
-            //}
+            sceneRef.FindPropertyRelative("_guid").stringValue = GetGUID(sceneAsset);
         }
-        */
-
-        private string GetSceneAssetPath(SerializedProperty sceneRefProperty)
+        private SceneAsset GetSceneAsset(SerializedProperty sceneRef)
         {
-            var guid = sceneRefProperty.FindPropertyRelative("_guid").stringValue;
-            return string.IsNullOrEmpty(guid) ? null : AssetDatabase.GUIDToAssetPath(guid);
+            string GetSceneAssetPath(SerializedProperty sceneRef)
+            {
+                var guid = GetGUID(sceneRef);
+                return string.IsNullOrEmpty(guid) ? null : AssetDatabase.GUIDToAssetPath(guid);
+            }
+            var path = GetSceneAssetPath(sceneRef);
+            return (string.IsNullOrEmpty(path)) ? null : AssetDatabase.LoadAssetAtPath<SceneAsset>(path);
         }
 
-        private string GetGUID(SceneAsset sceneAsset)
-        {
-            var path = AssetDatabase.GetAssetPath(sceneAsset);
-            return AssetDatabase.AssetPathToGUID(path);
-        }
 
         [MenuItem("Assets/Open Scene Stack", priority = 19)]
         private static void OpenSceneStack()

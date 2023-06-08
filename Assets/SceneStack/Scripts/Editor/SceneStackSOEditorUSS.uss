@@ -1,0 +1,16 @@
+.scenestack-enabled{
+	color : var(--unity-colors-label-text-focus);
+}
+.scenestack-disabled{
+    color : var(--unity-colors-warning-text);
+}
+.scenestack-missing{
+    color : var(--unity-colors-error-text);
+}
+.scenestack-box{
+    padding : 5px;
+}
+
+.scenestack-list{
+    margin-top : 5px;
+}

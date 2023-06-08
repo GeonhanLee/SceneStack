@@ -30,13 +30,14 @@ namespace Malcha.SceneStack.Editor
             );
         }
 
-        public static bool IsInBuildAndEnabled(string scenePath)
+        public static bool IsInBuild(string scenePath)
         {
-            if(_scenePathToScene.TryGetValue(scenePath, out var scene))
-            {
-                return scene.enabled;
-            }
-            return false;
+            return _scenePathToScene.TryGetValue(scenePath, out var scene);
+        }
+
+        public static bool IsEnabled(string scenePath)
+        {
+            return IsInBuild(scenePath) && _scenePathToScene[scenePath].enabled;
         }
     }
 }
