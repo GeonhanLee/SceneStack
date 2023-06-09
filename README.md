@@ -26,7 +26,7 @@ Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create Scen
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/6264f746-0f93-4531-bea2-a0a42909dc17)  
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/8a0d46a3-46af-4584-8293-681138b33655)
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/cd167fa8-6ec2-4fba-9808-1ab8f78552ab)
 
 ### Configure SceneStack in runtime
 You can create your own `SceneStack` without `SceneStackSO`.
