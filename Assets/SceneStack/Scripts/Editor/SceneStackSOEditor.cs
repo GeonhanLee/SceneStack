@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static log4net.Appender.ColoredConsoleAppender;
 
 namespace Malcha.SceneStack.Editor
 {
@@ -14,6 +12,7 @@ namespace Malcha.SceneStack.Editor
     {
         [SerializeField] private StyleSheet _styleSheet;
         private VisualElement _root = null;
+        private HelpBox _buildSettingWarning = null;
         private void OnEnable()
         {
             EditorBuildSettingsSceneManager.SceneListChanged += SetAllObjectLabelColor;
@@ -27,14 +26,17 @@ namespace Malcha.SceneStack.Editor
             _root = new VisualElement();
             _root.styleSheets.Add(_styleSheet);
 
+            _buildSettingWarning = CreateBuildSettingWarning();
             var baseSceneWarning = CreateBaseSceneWarning();
             var baseSceneField = CreateBaseSceneField(baseSceneWarning);
             var overlaySceneListView = CreateOverlaySceneListView();
 
             _root.Add(CreateOpenButton());
 
+            _root.Add(_buildSettingWarning);
             _root.Add(baseSceneWarning);
             _root.Add(baseSceneField);
+            SetElementActive(_buildSettingWarning, false);
 
             var box = new Box();
 
@@ -45,6 +47,12 @@ namespace Malcha.SceneStack.Editor
             overlaySceneListView.AddToClassList("scenestack-list");
 
             _root.Add(box);
+
+            _root.TrackSerializedObjectValue(serializedObject, (obj) =>
+            {
+                SetAllObjectLabelColor();
+            });
+
             return _root;
         }
 
@@ -52,42 +60,41 @@ namespace Malcha.SceneStack.Editor
         {
             if (_root == null) return;
 
+            bool needWarning = false;
             _root.Query<ObjectField>().ForEach(
                 field => {
                     SceneAsset sceneAsset = field.value as SceneAsset;
                     SetObjectLabelColor(field, sceneAsset);
+
+                    string path = AssetDatabase.GetAssetPath(sceneAsset);
+                    needWarning |= !EditorBuildSettingsSceneManager.IsEnabled(path);
                 });
+            SetElementActive(_buildSettingWarning, needWarning);
         }
         void SetObjectLabelColor(ObjectField objectField, SceneAsset sceneAsset)
         {
             Label objectLabel = objectField.Q(className: ObjectField.objectUssClassName).Q<Label>();
 
-            objectLabel.EnableInClassList("scenestack-enabled", false);
-            objectLabel.EnableInClassList("scenestack-disabled", false);
-            objectLabel.EnableInClassList("scenestack-missing", false);
-
             if (sceneAsset == null)
             {
                 objectLabel.EnableInClassList("scenestack-missing", true);
-                return;
-            }
+                objectLabel.EnableInClassList("scenestack-enabled", false);
+                objectLabel.EnableInClassList("scenestack-disabled", false);
 
-            string path = AssetDatabase.GetAssetPath(sceneAsset);
-
-            if (EditorBuildSettingsSceneManager.IsInBuild(path))
-            {
-                if (EditorBuildSettingsSceneManager.IsEnabled(path))
-                {
-                    objectLabel.EnableInClassList("scenestack-enabled", true);
-                }
-                else
-                {
-                    objectLabel.EnableInClassList("scenestack-disabled", true);
-                }
+                SetElementActive(_buildSettingWarning, true);
             }
             else
             {
-                objectLabel.EnableInClassList("scenestack-missing", true);
+                string path = AssetDatabase.GetAssetPath(sceneAsset);
+
+                bool isInBuild = EditorBuildSettingsSceneManager.IsInBuild(path);
+                bool isEnabled = EditorBuildSettingsSceneManager.IsEnabled(path);
+
+                objectLabel.EnableInClassList("scenestack-enabled", isEnabled);
+                objectLabel.EnableInClassList("scenestack-disabled", isInBuild && !isEnabled);
+                objectLabel.EnableInClassList("scenestack-missing", !isInBuild);
+
+                if(!isEnabled) SetElementActive(_buildSettingWarning, true);
             }
         }
 
@@ -107,6 +114,12 @@ namespace Malcha.SceneStack.Editor
             var helpBox = new HelpBox("Please make sure to assign the Base Scene", HelpBoxMessageType.Warning);
             return helpBox;
         }
+        private HelpBox CreateBuildSettingWarning()
+        {
+            var helpBox = new HelpBox("Some scenes in SceneStack are not included in build.", HelpBoxMessageType.Warning);
+            return helpBox;
+        }
+
         private void SetElementActive(VisualElement e, bool active)
         {
             e.style.display = active ? DisplayStyle.Flex : DisplayStyle.None;
@@ -210,9 +223,11 @@ namespace Malcha.SceneStack.Editor
             overlayListView.bindItem = BindItem;
             overlayListView.unbindItem = UnBindItem;
 
+            // set serialized list
             overlayListView.itemIndexChanged += OnItemIndexChanged;
             overlayListView.viewController.itemsSourceSizeChanged += OnItemsSourceSizeChanged;
 
+            // set source list
             overlayListView.TrackPropertyValue(overlaySceneListProp,
                 (newProp) => { 
                     SetSourceList(newProp);
