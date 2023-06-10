@@ -11,6 +11,11 @@ namespace Malcha.SceneStack
     {
         public static void ConfigureBySceneOrder()
         {
+            if (Camera.main == null)
+            {
+                Debug.LogWarning("No Main Camera is enabled.");
+                return;
+            }
             var cameraData = Camera.main.GetUniversalAdditionalCameraData();
             cameraData.cameraStack.Clear();
 
