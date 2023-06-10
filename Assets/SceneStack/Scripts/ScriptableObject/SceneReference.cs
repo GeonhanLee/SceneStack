@@ -24,7 +24,7 @@ namespace Malcha.SceneStack
                 SetSceneData();
 #endif
             }
-            public bool HasValue => !string.IsNullOrWhiteSpace(_guid);
+            public bool HasValue => !string.IsNullOrWhiteSpace(data.path);
 
 #if UNITY_EDITOR
             private void SetSceneData()
