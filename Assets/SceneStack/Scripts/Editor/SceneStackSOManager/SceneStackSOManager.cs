@@ -8,7 +8,7 @@ namespace Malcha.SceneStack.Editor
     {
         public static void ReserializeAllSceneStackSO()
         {
-            Debug.Log("ReserializeAllSceneStackSO");
+            //Debug.Log("ReserializeAllSceneStackSO");
             List<string> _sceneStackSOPaths = new();
             var allSceneStackGuids = AssetDatabase.FindAssets("t:SceneStackSO");
 
