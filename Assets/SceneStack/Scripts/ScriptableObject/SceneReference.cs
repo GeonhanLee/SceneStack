@@ -31,7 +31,17 @@ namespace Malcha.SceneStack
             {
                 if (!string.IsNullOrWhiteSpace(_guid))
                 {
-                    data = new(AssetDatabase.GUIDToAssetPath(_guid));
+                    string path = AssetDatabase.GUIDToAssetPath(_guid);
+
+                    if (!string.IsNullOrWhiteSpace(path))
+                    {
+                        data = new SceneData(path);
+                    }
+                    else
+                    {
+                        _guid = null;
+                        data = default;
+                    }
                 }
                 else
                 {
