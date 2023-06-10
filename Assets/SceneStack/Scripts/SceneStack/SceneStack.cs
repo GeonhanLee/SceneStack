@@ -9,13 +9,15 @@ namespace Malcha.SceneStack
     [System.Serializable]
     public struct SceneData
     {
-        public string path;
-        public SceneData(string sceneName) => path = sceneName;
+        [SerializeField] private string _path;
+        public string path => _path;
+        public SceneData(string sceneName)
+        {
+            int index = SceneUtility.GetBuildIndexByScenePath(sceneName);
+            _path = SceneUtility.GetScenePathByBuildIndex(index);
+        }
 
-        public string name => 
-            Path.HasExtension(path) ? 
-            Path.GetFileNameWithoutExtension(path) :
-            Path.GetFileNameWithoutExtension(path + ".unity");
+        public string name => Path.GetFileNameWithoutExtension(path);
     }
 
     [System.Serializable]

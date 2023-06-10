@@ -1,3 +1,5 @@
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,34 +21,33 @@ namespace Malcha.SceneStack
             }
 
             SceneManager.LoadScene(stack.baseScene.path);
-            SceneManager.sceneLoaded += SetActiveScene;
+            SceneManager.sceneLoaded += SetActiveScene; 
             void SetActiveScene(Scene scene, LoadSceneMode _)
             {
-                if(scene.path == stack.baseScene.path)
+                if(SceneUtility.GetBuildIndexByScenePath(stack.baseScene.path) == scene.buildIndex)
                 {
-                    SceneManager.SetActiveScene(SceneManager.GetSceneByPath(stack.baseScene.path));
+                    SceneManager.SetActiveScene(scene);
                     SceneManager.sceneLoaded -= SetActiveScene;
                 }
             }
             
-
             for (int i = 0; i < stack.overlayScenes.Count; i++)
             {
                 string path = stack.overlayScenes[i].path;
                 SceneManager.LoadScene(path, LoadSceneMode.Additive);
-
-                if (i == stack.overlayScenes.Count - 1)
-                {
-                    void SetCameraStack(Scene scene, LoadSceneMode _)
-                    {
-                        if (path != scene.path) return;
-
-                        CameraStackConfigurer.ConfigureBySceneOrder();
-                        SceneManager.sceneLoaded -= SetCameraStack;
-                    };
-                    SceneManager.sceneLoaded += SetCameraStack;
-                }
             }
+
+            string lastScenePath = stack.overlayScenes.Count > 0 ? stack.overlayScenes.Last().path : stack.baseScene.path;
+            
+            void SetCameraStack(Scene scene, LoadSceneMode _)
+            {
+                if (SceneUtility.GetBuildIndexByScenePath(lastScenePath) == scene.buildIndex)
+                {
+                    CameraStackConfigurer.ConfigureBySceneOrder();
+                    SceneManager.sceneLoaded -= SetCameraStack;
+                }
+            };
+            SceneManager.sceneLoaded += SetCameraStack;
         }
     }
 }
