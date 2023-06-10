@@ -82,15 +82,15 @@ public void ExampleLoadSceneStack(SceneStack ss)
 ```
 
 ### SceneStackCanvasSorter 
-The raycast order of canvas across multiple scenes with same sorting order is not guranteed.
+The raycast order of canvas across multiple scenes with same sorting order is not guranteed.  
+To fix this, `SceneStackCanvasSorter` sets the `sortingOrder` of a canvas to the index of a scene which belongs to.
 
-`SceneStackCanvasSorter` sets the `sortingOrder` of a canvas to the index of a scene which belongs to.  
 Add `SceneStackCanvasSorter` component to your canvas object.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0697f7f1-9691-4556-a163-89c74ba821d1)
 
 ### SceneStackCameraSorter
-Camera is sorted in the camera stack with an index of  belonged scene.  
-However, you can sort multiple camera in the same scene with `SceneStackCameraSorter` component.  
+Camera is sorted in the camera stack with an index of its belonged scene.  
+If you want to sort the cameras in the same scene, use the `SceneStackCameraSorter` component.
 
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/71b3e9dc-b32f-402a-b6e4-2e404dd4f2a1)
@@ -119,7 +119,6 @@ https://forum.unity.com/threads/indexoutofrangeexception-in-urp.1306230
 The list below is not currently supported.
 - Multiple base camera (e.g. split screen, render texture)
 - Async scene loading
-- Check if scene is in build setting
 
 ## Credits & Similar Projects
 `SceneReference` and `ReserializeAllSceneStackSO()` is based and inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference).
