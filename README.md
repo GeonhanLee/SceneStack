@@ -21,15 +21,27 @@ Using SceneStack, UI camera & canvas can be managed in separate scenes.
 ### Getting started
 Add `using Malcha.SceneStack;`
 
-### Configure SceneStack in editor mode
+### SceneStackSO
+You can create your own `SceneStack` with `SceneStackSO` in the editor.
+
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/6264f746-0f93-4531-bea2-a0a42909dc17)  
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/cd167fa8-6ec2-4fba-9808-1ab8f78552ab)
 
+`SceneStackSO` gives you warning in the inspector if base scene is missing or some scenes in the `SceneStack` are not in build.  
+// need img
+
 ### Configure SceneStack in runtime
-You can create your own `SceneStack` without `SceneStackSO`.
+You can clone `SceneStack` from your `SceneStackSO`.
+```cs
+public SceneStack ExampleCloneSceneStack(SceneStackSO so)
+{
+  return so.CloneSceneStack();
+}
+```
+or you can construct your own `SceneStack` without `SceneStackSO`.
 ```cs
 SceneStack stack = new SceneStack("BaseScene");
 // stack.baseScene = new SceneData("BaseScene"); is also ok.
@@ -48,9 +60,9 @@ Overlay cameras in scenes included in the `SceneStack` will be added to base cam
 The order of cameras in camera stack is equivalent to the order of belonged scene in the `SceneStack`.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/1411dbb5-b0b1-42fe-ac17-cd0bd152754d)  
 
-### Load SceneStack in editor mode
+### Open SceneStack in editor mode
 You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`,  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/77394d96-bf7d-49b8-9ccc-574b21f8f91f)  
+// need img  
 or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/b6523835-5d5b-42db-a471-8521164c9769)
 
