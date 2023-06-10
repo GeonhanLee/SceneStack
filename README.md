@@ -31,7 +31,7 @@ You can also add overlay scenes as a stack.
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/cd167fa8-6ec2-4fba-9808-1ab8f78552ab)
 
 `SceneStackSO` gives you warning in the inspector if base scene is missing or some scenes in the `SceneStack` are not in build.  
-// need img
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/d0eea8ce-449c-41d0-9665-23f8ee3cf471)
 
 ### Configure SceneStack in runtime
 You can clone `SceneStack` from your `SceneStackSO`.
@@ -62,7 +62,8 @@ The order of cameras in camera stack is equivalent to the order of belonged scen
 
 ### Open SceneStack in editor mode
 You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`,  
-// need img  
+![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/025dad14-30df-4cce-b9b8-57a8e050d1e7)
+
 or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/b6523835-5d5b-42db-a471-8521164c9769)
 
