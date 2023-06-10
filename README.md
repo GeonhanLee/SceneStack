@@ -13,8 +13,10 @@ SceneStack is a multi-scene management system with URP CameraStack support.
 Using SceneStack, UI camera & canvas can be managed in separate scenes.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/38aef70c-28f4-4048-8aa0-afe2c46d43d3)
 
-1. Create a UI camera with Render Type - Overlay and Culling Mask - UI.  
-2. Create a canvas with Screen Space - Camera and set Render Camera to your UI camera.
+You can create a UI scene by these steps.
+1. Create a Scene.
+2. Add a UI camera with Render Type - Overlay and Culling Mask - UI.  
+3. Add a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
 ## Guide
 
@@ -95,7 +97,7 @@ If you want to sort the cameras in the same scene, use the `SceneStackCameraSort
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.  
 ![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/71b3e9dc-b32f-402a-b6e4-2e404dd4f2a1)
 
-## Overview
+## Internal Operations
 
 ### SceneStackSOManager
 `SceneStackSOManager` Reserializes all `SceneStackSO` by `ReserializeAllSceneStackSO()`.
