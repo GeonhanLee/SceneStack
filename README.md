@@ -123,9 +123,10 @@ The list below is not currently supported.
 - Async scene loading
 
 ## Credits & Similar Projects
-`SceneReference` and `ReserializeAllSceneStackSO()` is based and inspired by [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference).
-- Unlike `Eflatun.SceneReference`, SceneStack doesn't generate a Scene GUID to Path Map. Instead, SceneStack reserializes all `SceneStackSO`.
-- SceneStack doesn't provide SceneReference API to user.
-
+SceneStack is heavily inspired by these projects. 
+- [Eflatun.SceneReference](https://github.com/starikcetin/Eflatun.SceneReference)
+  - Unlike `Eflatun.SceneReference`, SceneStack doesn't generate a Scene GUID to Path Map. Instead, SceneStack reserializes all `SceneStackSO`.
+  - SceneStack doesn't provide SceneReference API to user.
+- [CarterGames/MultiScene](https://github.com/CarterGames/MultiScene)
 ## License
 MIT License. Refer to the [LICENSE.md](./LICENSE.md) file.
