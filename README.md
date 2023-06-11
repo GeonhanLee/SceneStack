@@ -129,4 +129,4 @@ SceneStack is heavily inspired by these projects.
   - SceneStack doesn't provide SceneReference API to user.
 - [CarterGames/MultiScene](https://github.com/CarterGames/MultiScene)
 ## License
-MIT License. Refer to the [LICENSE.md](./LICENSE.md) file.
+MIT License. Refer to the [LICENSE.md](./Packages/SceneStack/LICENSE.md) file.
