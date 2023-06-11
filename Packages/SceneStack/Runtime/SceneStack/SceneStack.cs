@@ -13,8 +13,18 @@ namespace Malcha.SceneStack
         public string path => _path;
         public SceneData(string sceneName)
         {
+            _path = null;
             int index = SceneUtility.GetBuildIndexByScenePath(sceneName);
-            _path = SceneUtility.GetScenePathByBuildIndex(index);
+            if (index == -1)
+            {
+#if UNITY_EDITOR
+                _path = sceneName;
+#endif
+            }
+            else
+            {
+                _path = SceneUtility.GetScenePathByBuildIndex(index);
+            }
         }
 
         public string name => Path.GetFileNameWithoutExtension(path);
