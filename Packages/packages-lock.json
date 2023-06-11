@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.malcha.scenestack": {
+      "version": "file:SceneStack",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "13.0.0"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "9.0.1",
       "depth": 1,

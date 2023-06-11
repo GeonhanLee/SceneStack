@@ -1,0 +1,22 @@
+{
+  "name": "com.malcha.scenestack",
+  "version": "0.1.0",
+  "displayName": "SceneStack",
+  "description": "SceneStack is a multi-scene management system with URP CameraStack support.",
+  "unity": "2022.1",
+  "documentationUrl": "https://github.com/GeonhanLee/SceneStack",
+  "author": {
+    "name": "Geonhan Lee",
+    "email": "leegeonhan1122@gmail.com",
+    "url": "https://github.com/GeonhanLee"
+  },
+  "samples": [
+    {
+      "displayName": "UISceneSample",
+      "path": "Samples~/SampleUIScene"
+    }
+  ],
+  "dependencies": {
+		"com.unity.render-pipelines.universal": "13.0.0"
+	}
+}

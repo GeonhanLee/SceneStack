@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c355929e83bd5274d91856f03b1cf6e6, type: 3}
-  m_Name: SceneStack_BCA
+  m_Name: SceneStack_CAB
   m_EditorClassIdentifier: 
   _baseScene:
     _guid: 8c9cfa26abfee488c85f1582747f6a02
     data:
-      _path: Assets/SampleScenes/BaseScene.unity
+      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/BaseScene.unity
   _overlayScenes:
-  - _guid: dd3de1b4eccbced4298e695583ed190c
-    data:
-      _path: Assets/SampleScenes/UIOverlaySceneB.unity
   - _guid: 8a8d774a926d6634abadf6fb3978c914
     data:
-      _path: Assets/SampleScenes/UIOverlaySceneC.unity
+      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneC.unity
   - _guid: 5956ec7ad76806443871958ef722ad8f
     data:
-      _path: Assets/SampleScenes/UIOverlaySceneA.unity
+      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneA.unity
+  - _guid: dd3de1b4eccbced4298e695583ed190c
+    data:
+      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneB.unity
