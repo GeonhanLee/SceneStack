@@ -23,6 +23,12 @@ For more information of this usage, please refer to the `UISceneSample` sample p
 ## Guide
 
 ### Getting started
+#### 1. Install from a Git URL
+Add the following line to the dependencies section of your project's manifest.json file.
+```json
+"com.malcha.scenestack": "git+https://github.com/GeonhanLee/SceneStack.git?path=/Packages/SceneStack"
+```
+#### 2. Namespace
 Add `using Malcha.SceneStack;`
 
 ### SceneStackSO
