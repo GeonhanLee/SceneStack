@@ -11,7 +11,7 @@ SceneStack is a multi-scene management system with URP CameraStack support.
 
 ### UI Scene
 Using SceneStack, UI camera & canvas can be managed in separate scenes.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/38aef70c-28f4-4048-8aa0-afe2c46d43d3)
+![image](.github/assets/UISceneHierarchy.png)
 
 You can create a UI scene by these steps.
 1. Create a Scene.
@@ -23,6 +23,8 @@ For more information of this usage, please refer to the `UISceneSample` sample p
 ## Guide
 
 ### Getting started
+#### 0. Prerequisites
+SceneStack requires Unity 2022.x+ and URP with camera stack support.
 #### 1. Install from a Git URL
 Add the following line to the dependencies section of your project's manifest.json file.
 ```json
@@ -35,13 +37,13 @@ Add `using Malcha.SceneStack;`
 You can create your own `SceneStack` with `SceneStackSO` in the editor.
 
 Create `SceneStackSO` using the menu `Assets > Create > SceneStack > Create SceneStack`.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/6264f746-0f93-4531-bea2-a0a42909dc17)  
+![image](.github/assets/CreateSceneStackMenu.png)  
 Assign your scene to the base scene field in the inspector.  
 You can also add overlay scenes as a stack.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/cd167fa8-6ec2-4fba-9808-1ab8f78552ab)
+![image](.github/assets/SceneStackInspector.png)
 
 `SceneStackSO` gives you warning in the inspector if base scene is missing or some scenes in the `SceneStack` are not in build.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/d0eea8ce-449c-41d0-9665-23f8ee3cf471)
+![image](.github/assets/SceneStackInspectorWarning.png)
 
 ### Configure SceneStack in runtime
 You can clone `SceneStack` from your `SceneStackSO`.
@@ -66,16 +68,16 @@ You can fill the class `SceneData`'s constructor with the name or path of the sc
 
 ### CameraStack
 Overlay cameras in scenes included in the `SceneStack` will be added to base camera when `SceneStack` is loaded.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0248418f-a991-4af3-b7f9-7b2cb9a20f30)  
+![image](.github/assets/OverlayCamerasHierarchy.png)  
 The order of cameras in camera stack is equivalent to the order of belonged scene in the `SceneStack`.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/1411dbb5-b0b1-42fe-ac17-cd0bd152754d)  
+![image](.github/assets/CameraStackInspector.png)  
 
 ### Open SceneStack in editor mode
-You can load your `SceneStack` in editor mode by clicking the button on `SceneStackSO`,  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/025dad14-30df-4cce-b9b8-57a8e050d1e7)
+You can open your `SceneStack` in editor mode by clicking the button on `SceneStackSO`,  
+![image](.github/assets/SceneStackOpenButton.png)
 
 or right click the `SceneStackSO` in the project window and select `Open Scene Stack` menu.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/b6523835-5d5b-42db-a471-8521164c9769)
+![image](.github/assets/SceneStackOpenMenu.png)
 
 
 ### Load SceneStack in runtime
@@ -96,14 +98,14 @@ The raycast order of canvas across multiple scenes with same sorting order is no
 To fix this, `SceneStackCanvasSorter` sets the `sortingOrder` of a canvas to the index of a scene which belongs to.
 
 Add `SceneStackCanvasSorter` component to your canvas object.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/0697f7f1-9691-4556-a163-89c74ba821d1)
+![image](.github/assets/SceneStackCanvasSorter.png)
 
 ### SceneStackCameraSorter
 Camera is sorted in the camera stack with an index of its belonged scene.  
 If you want to sort the cameras in the same scene, use the `SceneStackCameraSorter` component.
 
 Add `SceneStackCameraSorter` component to your Camera object and modify Sorting Order in the inspector window. The lower sorting order is rendered first.  
-![image](https://github.com/GeonhanLee/SceneStack/assets/37390116/71b3e9dc-b32f-402a-b6e4-2e404dd4f2a1)
+![image](.github/assets/SceneStackCameraSorter.png)
 
 ## Internal Operations
 
@@ -137,4 +139,5 @@ SceneStack is heavily inspired by these projects.
   - SceneStack doesn't provide SceneReference API to user.
 - [CarterGames/MultiScene](https://github.com/CarterGames/MultiScene)
 ## License
-MIT License. Refer to the [LICENSE.md](./Packages/SceneStack/LICENSE.md) file.
+This project is licensed under the terms of the MIT License.
+Refer to the [LICENSE.md](./Packages/SceneStack/LICENSE.md) file.
