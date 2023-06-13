@@ -18,9 +18,17 @@ You can create a UI scene by these steps.
 2. Add a UI camera with Render Type - Overlay and Culling Mask - UI.  
 3. Add a canvas with Screen Space - Camera and set Render Camera to your UI camera.
 
+For more information of this usage, please refer to the `UISceneSample` sample project in the package’s details panel.
+
 ## Guide
 
 ### Getting started
+#### 1. Install from a Git URL
+Add the following line to the dependencies section of your project's manifest.json file.
+```json
+"com.malcha.scenestack": "git+https://github.com/GeonhanLee/SceneStack.git?path=/Packages/SceneStack"
+```
+#### 2. Namespace
 Add `using Malcha.SceneStack;`
 
 ### SceneStackSO
