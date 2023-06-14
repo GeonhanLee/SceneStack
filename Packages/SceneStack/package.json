@@ -1,6 +1,6 @@
 {
   "name": "com.malcha.scenestack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "SceneStack",
   "description": "SceneStack is a multi-scene management system with URP CameraStack support.",
   "unity": "2022.1",
@@ -17,6 +17,6 @@
     }
   ],
   "dependencies": {
-		"com.unity.render-pipelines.universal": "13.0.0"
-	}
+    "com.unity.render-pipelines.universal": "13.0.0"
+  }
 }
