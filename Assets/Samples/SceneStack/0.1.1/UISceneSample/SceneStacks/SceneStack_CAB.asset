@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: SceneStack_CAB
   m_EditorClassIdentifier: 
   _baseScene:
-    _guid: 8c9cfa26abfee488c85f1582747f6a02
+    _guid: d6b3c77093ecc4a40ad5b10a1041973d
     data:
-      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/BaseScene.unity
+      _path: Assets/Samples/SceneStack/0.1.1/UISceneSample/BaseScene.unity
   _overlayScenes:
   - _guid: 8a8d774a926d6634abadf6fb3978c914
     data:
-      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneC.unity
+      _path: Assets/Samples/SceneStack/0.1.1/UISceneSample/UIOverlaySceneC.unity
   - _guid: 5956ec7ad76806443871958ef722ad8f
     data:
-      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneA.unity
+      _path: Assets/Samples/SceneStack/0.1.1/UISceneSample/UIOverlaySceneA.unity
   - _guid: dd3de1b4eccbced4298e695583ed190c
     data:
-      _path: Assets/Samples/SceneStack/0.1.0/UISceneSample/UIOverlaySceneB.unity
+      _path: Assets/Samples/SceneStack/0.1.1/UISceneSample/UIOverlaySceneB.unity
